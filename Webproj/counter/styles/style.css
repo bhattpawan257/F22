@@ -1,0 +1,50 @@
+button{
+  background-color: hsl(220,90%,50%);
+  width: 30%;
+  height: 60%;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 3vh;
+}
+
+button:active{
+  background-color: hsl(220,90%,50%);
+  translate: 2px -2px;
+}
+
+#keys{
+  background-color: hsl(0,0%,90%);
+  display: flex;
+  gap: 2.5%;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  width: auto;
+  border: 1px solid darkblue;
+  padding: 2.5%;
+  border-radius: 5px;
+}
+
+#countDiv{
+  background-color: hsl(0,0%,95%);
+  width: content-box;
+  padding: none;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+#countP{
+  font-size: 100px;
+  text-align: center
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-content: center;
+  justify-content: center;
+  background-color: black;
+}

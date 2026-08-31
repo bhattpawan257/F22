@@ -1,0 +1,435 @@
+```latex
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{fontspec}
+
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default/Latin font to Sans Serif in the main (rm) slot
+\babelfont{rm}{Noto Sans}
+
+% Add because main language is not English (though we are using English, following strict protocol just in case)
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+
+% --- REQUIRED PACKAGES ---
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{array}
+
+% --- COLOR PALETTE (Premium Dark Theme) ---
+\definecolor{bg}{HTML}{121212}        % Main background
+\definecolor{cardbg}{HTML}{1E1E24}    % Card/Box background
+\definecolor{tablealt}{HTML}{26262D}  % Alternate table row
+\definecolor{textmain}{HTML}{FFFFFF}  % Main text
+\definecolor{textdim}{HTML}{A0A0A0}   % Subtitles/Dim text
+
+% Neon Accents
+\definecolor{neoncyan}{HTML}{00F3FF}
+\definecolor{neonpurple}{HTML}{B026FF}
+\definecolor{neonblue}{HTML}{0078FF}
+\definecolor{neonteal}{HTML}{00FFCC}
+\definecolor{neonpink}{HTML}{FF007F}
+\definecolor{neonyellow}{HTML}{FFD700}
+
+% --- GLOBAL SETTINGS ---
+\pagecolor{bg}
+\color{textmain}
+\arrayrulecolor{textdim!30}
+
+% Header & Footer
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\color{textdim}\footnotesize \thepage \quad | \quad CBSE PERFORMANCE BATCH REPORT 2026}
+\fancyfoot[R]{\color{neoncyan}\footnotesize PM SHRI JNV CHAMPAWAT}
+
+% Link styling
+\hypersetup{
+    colorlinks=true,
+    linkcolor=neoncyan,
+    urlcolor=neonteal
+}
+
+% --- CUSTOM COMMANDS & ENVIRONMENTS ---
+
+% KPI Card Environment
+\newtcolorbox{kpicard}[2][]{
+    enhanced,
+    colback=cardbg,
+    colframe=cardbg,
+    arc=4mm,
+    boxrule=0pt,
+    drop shadow=black!50!bg,
+    borderline west={4pt}{0pt}{#2},
+    #1
+}
+
+% Section Header Command
+\newcommand{\sectiontitle}[2]{
+    \vspace{1.5cm}
+    \noindent\begin{tikzpicture}
+        \fill[#2] (0,0) rectangle (0.15, 0.8);
+        \node[anchor=west, text=textmain, font=\LARGE\bfseries] at (0.3, 0.4) {\MakeUppercase{#1}};
+    \end{tikzpicture}
+    \vspace{0.5cm}
+}
+
+% Subject Topper Command
+\newcommand{\subjecttopper}[3]{
+    \textbf{\textcolor{textmain}{#1}} & \textcolor{textdim}{#2} & \textbf{\textcolor{#3}{#3\%}} \\
+}
+
+\begin{document}
+
+% ==========================================
+% COVER PAGE
+% ==========================================
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture, overlay]
+        % Background abstract shapes
+        \fill[neonpurple!5] (current page.north west) rectangle (current page.south east);
+        \fill[neonblue!10] (current page.south west) circle (10cm);
+        \fill[neoncyan!10] (current page.north east) circle (8cm);
+        
+        % Decorative Lines
+        \draw[neoncyan, thick, opacity=0.5] ([xshift=2cm, yshift=-3cm]current page.north west) -- ([xshift=-2cm, yshift=-3cm]current page.north east);
+        \draw[neonpurple, thick, opacity=0.5] ([xshift=2cm, yshift=-3.2cm]current page.north west) -- ([xshift=-2cm, yshift=-3.2cm]current page.north east);
+    \end{tikzpicture}
+
+    \vspace*{4cm}
+    
+    \begin{center}
+        \textcolor{neoncyan}{\LARGE \bfseries PM SHRI SCHOOL JAWAHAR NAVODAYA VIDYALAYA, CHAMPAWAT} \\[1cm]
+        
+        \Huge \bfseries \MakeUppercase{CBSE Performance} \\[0.3cm]
+        \Huge \bfseries \textcolor{neonpurple}{\MakeUppercase{Batch Report}} \\[1.5cm]
+        
+        \large \textcolor{textdim}{Detailed Student Performance Analytics \& Insights | Class XII (2026)} \\[2.5cm]
+    \end{center}
+
+    \vfill
+
+    % Cover KPI Cards
+    \begin{minipage}{0.31\textwidth}
+        \begin{kpicard}{neoncyan}
+            \centering
+            \textcolor{textdim}{\small TOTAL STUDENTS}\\[0.2cm]
+            \Large \bfseries 66
+        \end{kpicard}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \begin{kpicard}{neonpurple}
+            \centering
+            \textcolor{textdim}{\small HIGHEST SCORE}\\[0.2cm]
+            \Large \bfseries 89.0\%
+        \end{kpicard}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \begin{kpicard}{neonteal}
+            \centering
+            \textcolor{textdim}{\small BATCH AVERAGE}\\[0.2cm]
+            \Large \bfseries 74.5\%
+        \end{kpicard}
+    \end{minipage}
+
+    \vspace*{2cm}
+\end{titlepage}
+
+\newpage
+
+% ==========================================
+% BATCH OVERVIEW
+% ==========================================
+\sectiontitle{Batch Overview}{neonblue}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt, drop shadow]
+    \begin{multicols}{2}
+        \begin{itemize}[itemsep=0.8cm]
+            \item \textbf{\textcolor{textdim}{Total Number of Students:}} \hfill \textbf{66}
+            \item \textbf{\textcolor{textdim}{Average Batch Percentage:}} \hfill \textbf{\textcolor{neonteal}{74.5\%}}
+            \item \textbf{\textcolor{textdim}{Median Percentage:}} \hfill \textbf{76.2\%}
+            \item \textbf{\textcolor{textdim}{Highest Scorer:}} \hfill \textbf{Manish Kumar (89.0\%)}
+            \item \textbf{\textcolor{textdim}{Lowest Scorer (Pass):}} \hfill \textbf{56.0\%}
+            \item \textbf{\textcolor{textdim}{Students above 90\%:}} \hfill \textbf{\textcolor{neonpink}{0}}
+            \item \textbf{\textcolor{textdim}{Students above 80\%:}} \hfill \textbf{\textcolor{neoncyan}{12}}
+            \item \textbf{\textcolor{textdim}{Students below 60\%:}} \hfill \textbf{\textcolor{neonyellow}{14}}
+        \end{itemize}
+    \end{multicols}
+\end{tcolorbox}
+
+
+% ==========================================
+% TOPPER SECTION
+% ==========================================
+\sectiontitle{Topper Leaderboard}{neonpurple}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{tablealt}{cardbg}
+    \begin{tabularx}{\textwidth}{c X l c c}
+        \toprule
+        \textbf{\textcolor{neoncyan}{Rank}} & \textbf{\textcolor{textdim}{Student Name}} & \textbf{\textcolor{textdim}{Roll Number}} & \textbf{\textcolor{textdim}{Total Marks}} & \textbf{\textcolor{neoncyan}{Percentage}} \\
+        \midrule
+        \textbf{1}  & Manish Kumar     & 25605152 & 445 / 500 & \textbf{\textcolor{neonteal}{89.0\%}} \\
+        \textbf{2}  & Rudransh Singh   & 25605128 & 433 / 500 & \textbf{86.6\%} \\
+        \textbf{3}  & Aarju Kharkwal   & 25605093 & 432 / 500 & \textbf{86.4\%} \\
+        \textbf{4}  & Sheetal Mehta    & 25605104 & 431 / 500 & \textbf{86.2\%} \\
+        \textbf{5}  & Pawan Bhatt      & 25605125 & 429 / 500 & \textbf{85.8\%} \\
+        \textbf{6}  & Nikita Joshi     & 25605134 & 426 / 500 & \textbf{85.2\%} \\
+        \textbf{7}  & Suman Dhouni     & 25605147 & 425 / 500 & \textbf{85.0\%} \\
+        \textbf{8}  & Rohan Samant     & 25605156 & 415 / 500 & \textbf{83.0\%} \\
+        \textbf{9}  & Saurabh Kumar    & 25605157 & 410 / 500 & \textbf{82.0\%} \\
+        \textbf{10} & Kapil Joshi      & 25605118 & 409 / 500 & \textbf{81.8\%} \\
+        \bottomrule
+    \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\begin{kpicard}{neonteal}
+    \textbf{\textcolor{neoncyan}{\Large Subject Highest Scorers}}\\[0.3cm]
+    \begin{tabularx}{\textwidth}{l X c}
+        \textbf{Mathematics} & Pawan Bhatt & \textcolor{neonteal}{\textbf{88}} \\
+        \textbf{Physics} & Sheetal Mehta, Pawan Bhatt & \textcolor{neonteal}{\textbf{90}} \\
+        \textbf{Chemistry} & Aarju Kharkwal & \textcolor{neonteal}{\textbf{87}} \\
+        \textbf{Computer Science} & Pawan Bhatt, Rudransh Singh & \textcolor{neonteal}{\textbf{98}} \\
+        \textbf{Biology} & Nikita Joshi & \textcolor{neonteal}{\textbf{98}} \\
+        \textbf{English Core} & Shrishti Hyanki & \textcolor{neonteal}{\textbf{95}} \\
+        \textbf{Hindi Core} & Manish Kumar, Rudransh Singh & \textcolor{neonteal}{\textbf{98}} \\
+        \textbf{Economics} & Suman Dhouni & \textcolor{neonteal}{\textbf{95}} \\
+        \textbf{Business Studies} & Manish Kumar & \textcolor{neonteal}{\textbf{86}} \\
+        \textbf{Accountancy} & Manish Kumar & \textcolor{neonteal}{\textbf{84}} \\
+        \textbf{Yoga (Add.)} & Sheetal Mehta & \textcolor{neonteal}{\textbf{99}} \\
+    \end{tabularx}
+\end{kpicard}
+
+\newpage
+
+% ==========================================
+% SUBJECT ANALYTICS
+% ==========================================
+\sectiontitle{Subject Analytics}{neonteal}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt, drop shadow]
+    \centering
+    \textbf{Average Marks Across Major Subjects} \\[0.5cm]
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=20pt,
+            width=\textwidth,
+            height=8cm,
+            enlarge x limits=0.1,
+            symbolic x coords={Eng, Hin, Math, Phy, Chem, CS, Bio, Eco, BS, Acc},
+            xtick=data,
+            nodes near coords,
+            every node near coord/.append style={font=\footnotesize\bfseries, color=white},
+            axis line style={draw=none},
+            tick label style={font=\footnotesize, color=textdim},
+            ymajorgrids=true,
+            grid style={dashed, textdim!30},
+            ymin=0, ymax=100
+        ]
+        \addplot[fill=neoncyan, draw=none] coordinates {
+            (Eng, 75)
+            (Hin, 85)
+            (Math, 52)
+            (Phy, 63)
+            (Chem, 60)
+            (CS, 89)
+            (Bio, 88)
+            (Eco, 75)
+            (BS, 70)
+            (Acc, 63)
+        };
+        \end{axis}
+    \end{tikzpicture}
+\end{tcolorbox}
+
+\vspace{1cm}
+
+\begin{multicols}{2}
+    \begin{kpicard}{neonpink}
+        \textbf{Difficulty Estimation}\\
+        Based on class averages and lowest scores, \textbf{Mathematics} and \textbf{Chemistry} proved to be the most challenging subjects for the batch. Conversely, \textbf{Hindi Core}, \textbf{Computer Science}, and \textbf{Biology} yielded highly favorable results.
+    \end{kpicard}
+    
+    \begin{kpicard}{neonyellow}
+        \textbf{Critical Zones}\\
+        Significant drop-offs observed in \textbf{Accountancy} for Commerce students and \textbf{Physics/Math} for Science students. Compartments and RT (Repeat in Theory) were mostly isolated to these specific disciplines.
+    \end{kpicard}
+\end{multicols}
+
+% ==========================================
+% STREAM COMPARISON
+% ==========================================
+\sectiontitle{Stream Comparison}{neonpink}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt]
+    \begin{tikzpicture}
+        \begin{axis}[
+            xbar,
+            bar width=18pt,
+            width=\textwidth,
+            height=5cm,
+            enlarge y limits=0.3,
+            symbolic y coords={Commerce, PCB (Bio), PCM (Math)},
+            ytick=data,
+            nodes near coords,
+            nodes near coords align={horizontal},
+            every node near coord/.append style={font=\footnotesize\bfseries, color=white},
+            axis line style={draw=none},
+            tick label style={font=\normalsize\bfseries, color=textmain},
+            xmajorgrids=true,
+            grid style={dashed, textdim!30},
+            xmin=0, xmax=100
+        ]
+        \addplot[fill=neonpurple, draw=none] coordinates {
+            (73.5,Commerce)
+            (79.2,PCB (Bio))
+            (71.8,PCM (Math))
+        };
+        \end{axis}
+    \end{tikzpicture}
+\end{tcolorbox}
+
+\newpage
+
+% ==========================================
+% PERFORMANCE DISTRIBUTION
+% ==========================================
+\sectiontitle{Performance Distribution}{neonyellow}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt]
+    \centering
+    \textbf{Batch Percentage Clusters} \\[0.5cm]
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=35pt,
+            width=0.9\textwidth,
+            height=7cm,
+            enlarge x limits=0.15,
+            symbolic x coords={90-100\%, 80-89\%, 70-79\%, 60-69\%, 50-59\%, Below 50\%},
+            xtick=data,
+            nodes near coords,
+            every node near coord/.append style={font=\large\bfseries, color=white},
+            axis line style={draw=none},
+            tick label style={font=\footnotesize, color=textdim},
+            ymajorgrids=true,
+            grid style={dashed, textdim!30},
+            ymin=0, ymax=30
+        ]
+        \addplot[fill=neonteal, draw=none] coordinates {
+            (90-100\%, 0)
+            (80-89\%, 12)
+            (70-79\%, 24)
+            (60-69\%, 16)
+            (50-59\%, 12)
+            (Below 50\%, 2)
+        };
+        \end{axis}
+    \end{tikzpicture}
+\end{tcolorbox}
+
+
+% ==========================================
+% STUDENT-WISE PERFORMANCE (SNIPPET)
+% ==========================================
+\sectiontitle{Student Performance (Batch Snippet)}{neonblue}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt]
+    \renewcommand{\arraystretch}{1.4}
+    \rowcolors{2}{tablealt}{cardbg}
+    \begin{tabularx}{\textwidth}{c X c c}
+        \toprule
+        \textbf{\textcolor{textdim}{Roll No}} & \textbf{\textcolor{textdim}{Student Name}} & \textbf{\textcolor{textdim}{Marks}} & \textbf{\textcolor{textdim}{Percentage}} \\
+        \midrule
+        25605152 & Manish Kumar     & 445 / 500 & \textbf{\textcolor{neonteal}{89.0\%}} \\
+        25605128 & Rudransh Singh   & 433 / 500 & \textbf{86.6\%} \\
+        25605093 & Aarju Kharkwal   & 432 / 500 & \textbf{86.4\%} \\
+        25605134 & Nikita Joshi     & 426 / 500 & \textbf{85.2\%} \\
+        25605147 & Suman Dhouni     & 425 / 500 & \textbf{85.0\%} \\
+        25605156 & Rohan Samant     & 415 / 500 & \textbf{83.0\%} \\
+        25605118 & Kapil Joshi      & 409 / 500 & \textbf{81.8\%} \\
+        25605136 & Shrishti Hyanki  & 384 / 500 & \textbf{76.8\%} \\
+        25605138 & Suhani Arya      & 382 / 500 & \textbf{76.4\%} \\
+        25605158 & Suraj Bhatt      & 376 / 500 & \textbf{75.2\%} \\
+        25605095 & Deepika Mahra    & 366 / 500 & \textbf{73.2\%} \\
+        25605126 & Pradeep Singh    & 364 / 500 & \textbf{72.8\%} \\
+        25605094 & Akanksha Joshi   & 335 / 500 & \textbf{67.0\%} \\
+        25605153 & Monu Bohra       & 330 / 500 & \textbf{66.0\%} \\
+        25605116 & Harshit Kumar    & 324 / 500 & \textbf{64.8\%} \\
+        25605107 & Aaryan Singh     & 295 / 500 & \textbf{59.0\%} \\
+        25605144 & Rohit Nariyal    & 280 / 500 & \textbf{56.0\%} \\
+        \bottomrule
+    \end{tabularx}
+    \vspace{0.2cm}
+    \begin{center}
+        \textcolor{textdim}{\scriptsize * Showing a representative sample of Top, Mid, and Bottom quartiles.}
+    \end{center}
+\end{tcolorbox}
+
+\newpage
+
+% ==========================================
+% INSIGHTS & OBSERVATIONS
+% ==========================================
+\sectiontitle{Insights \& Observations}{neoncyan}
+
+\begin{tcolorbox}[enhanced, colback=cardbg, colframe=cardbg, arc=4mm, boxrule=0pt, drop shadow]
+    \large
+    \begin{itemize}[itemsep=0.6cm, label=\textcolor{neoncyan}{$\bullet$}]
+        \item \textbf{Mathematics proved highly challenging:} The average score in Mathematics hovered around 52\%, with a large number of PCM students scoring in the 40s and 50s. This heavily impacted the aggregate percentage of the PCM cohort.
+        \item \textbf{PCB (Biology) outperformed PCM:} Biology students maintained a higher aggregate average (approx. 79.2\%), driven by strong performances in Biology (Avg: 88\%) and Hindi Core.
+        \item \textbf{Language subjects acted as grade saviors:} Hindi Core (Avg: 85\%) and English Core (Avg: 75\%) witnessed extremely consistent, high scores across all streams, preventing overall percentage drops.
+        \item \textbf{Computer Science is a major strength:} Students opting for Computer Science scored remarkably well, averaging near 89\%, making it the highest-scoring elective in the entire batch.
+        \item \textbf{Commerce stream polarity:} While Economics yielded excellent scores (Avg: 75\%), Accountancy proved difficult for the Commerce batch, with many students scoring below 60, dragging the stream average to 73.5\%.
+        \item \textbf{Topper Demographics:} The top ranks are heavily mixed, with the overall School Topper emerging from the Commerce stream (Manish Kumar - 89.0\%), closely followed by PCM (Rudransh Singh - 86.6\%) and PCB (Nikita Joshi - 85.2\%).
+    \end{itemize}
+\end{tcolorbox}
+
+
+% ==========================================
+% FINAL PAGE
+% ==========================================
+\vspace*{\fill}
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[neonpurple, thick] (0,0) -- (10,0);
+        \node[text=textmain, font=\Large\bfseries] at (5, 0.6) {END OF REPORT};
+        \draw[neoncyan, thick] (2,-0.2) -- (8,-0.2);
+    \end{tikzpicture}
+    
+    \vspace{1.5cm}
+    
+    \textit{\textcolor{textdim}{"Data is not just numbers; it is the roadmap to future excellence."}}
+    
+    \vspace{1.5cm}
+    
+    \textcolor{textdim}{\small Generated via Automated CBSE Performance Analytics} \\
+    \textcolor{textdim}{\small PM SHRI SCHOOL JAWAHAR NAVODAYA VIDYALAYA CHAMPAWAT UK}
+\end{center}
+
+\vspace*{\fill}
+
+\end{document}
+
+```

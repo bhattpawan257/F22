@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <style>
+  body {
+    background-color:#000000;
+  }
+  main {
+    background-color:#5a5a5a;
+    color:#00ffff;
+  }
+  header {
+    background-color:#aaaaaa;
+    color:#ffffff
+  }
+  div {
+    background-color:#aaaaaa;
+  }
+  </style>
+  <title>
+    learnt topics
+  </title>
+</head>
+<body>
+  <header id="hdr">
+    <h1>new file</h1>
+    <nav>
+      <a href="#s1">1</a>
+      <a href="#s2">2</a>
+      <a href="#s3">3</a>
+    </nav>
+  <p>
+    this will be used to list everything i have learnt in html
+  </p>
+  </header>
+  <!--numbered list of everything-->
+  <main id="mn">
+  <ol>
+    <div id="s1">
+    <li>
+      <h2 >formatting</h2>
+      <ul>
+        <li><b>bold</b></li>
+        <li><i>italic</i></li>
+        <li><u>underline</u></li>
+        <li><small>small</small></li>
+        <li><mark>mark</mark></li>
+        <li><del>del</del></li>
+        <li><ins>ins</ins></li>
+        <li>text<sub>subscript</sub></li>
+        <li>text<sup>superscript</sup></li>
+        <li>linebreak(break here<br>next line)</li>
+        <li>blockquote(cite)<blockquote>this is a blockquote</blockquote></li>
+        <li>short quotation<q>this is a short quotation</q></li>
+        <li><abbr title="abbrevations">abbr</abbr></li>
+        <li><address>address</address></li>
+        <li><cite>cite</cite></li>
+        <li>bidirextional override <bdo dir="rtl">this text is rtl </bdo></li>
+        <li>comments<!--this should not be visible in the page--></li>
+        <li>page formatting
+          <ul>
+            <li><a href="#hdr">header</a></li>
+            <li><a href="#mn">main</a></li>
+            <li><a href="#ftr">footer</a></li>
+            <li>div tag</li>
+          </ul>
+        </li>
+        <li>article</li>
+        <li>section</li>
+        <li>aside</li>
+        <li>styling<ul>
+          <li style="color:green">color</li>
+          <li style="background-color:green">background color</li>
+          <li style="text-align:center">align</li>
+          <li style="font-size:small">font size</li>
+          <li style="border:1px solid green">border(width,type,color)</li>
+        </ul></li>
+      </ul>
+    </li>
+    </div>
+    <div id="s2">
+    <li>
+      <h2 >infographics</h2>
+      <ul>
+        <li>image(src,alt,height,width)
+          <img src="https://image.tmdb.org/t/p/w1280/gxnvX9kF7RRUQYvB52dMLPgeJkt.jpg"
+            alt="avatar"
+            height="100">
+        </li>
+        <li>
+          <p title="title">title</p>
+        </li>
+        <li>
+          <h3>lists</h3>
+          <ul>
+            <li>
+              unordered list
+              <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+              </ul>
+            </li>
+            <li>
+              ordered list(type)
+              <ol>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+              </ol>
+            </li>
+          </ul>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>
+            (href)
+          </li>
+          <li>
+            <h3>screen readers(semantic formatting tags)</h3>
+            <ul>
+              <li><strong>strong</strong></li>
+              <li><em>emphasis tag</em></li>
+            </ul>
+          </li>
+          <li>video(controls,autoplay,loop,muted,<br>
+            src,width,height,source(src,type))
+            <video controls loop height="150">
+              <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" type="Video/mp4">
+              video not available
+            </video>
+          </li>
+          <li>
+            audio(controls,autoplay,loop,muted,<br>
+            src,source(src,type)
+            <audio controls loop>
+              <source src="https://samplelib.com/mp3/sample-3s.mp3"
+                type="audio/mpeg">
+            </audio>
+          </li>
+          <li>
+            <table border>table
+              <th>header1</th>
+              <th>header2</th>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td rowspan="2">y</td>
+              </tr>
+              <tr>
+                <td>a</td>
+                <td>b</td>
+              </tr>
+              <tr>
+                <td colspan="2">x</td>
+              </tr>
+            </table>
+          </li>
+        </li>
+      </ul>
+    </li>
+    </div>
+    <div id="s3">
+    <li>
+      <h2 >interactives</h2>
+      <ul>
+        <li><button onclick="alert('js on the way')">button</button></li>
+        <li>id and navigators
+          <a href="#s1">1</a>
+          <a href="#s2">2</a>
+          <a href="#s3">3</a>
+        </li>
+        <li><h3>forms(type,name,value)</h3>
+          <form><ul>
+            <li>text<input type="text" id="t1"><input type="text" required></li>
+            <li>radio<input type="radio" id="r1"></li>
+            <li>checkbox<input type="checkbox" id="c1"></li>
+            <li>submit<input type="submit"></li>
+            <li>drop down menu[select(name)]
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option disabled>disabled</option>
+                <option selected>selected</option>
+              </select>
+            </li>
+            <fieldset>
+              <legend>fieldset</legend>
+            </fieldset>
+
+          </ul></form>
+        </li>
+        <li>
+          <h3>label(linked)</h3>
+          <ul>
+          <li><label for="t1">text</label></li>
+          <li><label for="r1">radio</label></li>
+          <li><label for="c1">checkbox</label></li>
+        </ul></li>
+      </ul> 
+    </li>
+    </div>
+  </ol>
+  </main>
+  <footer id="ftr">
+    <a href="#hdr">back to top</a>
+  </footer>
+</body>
+</html>
