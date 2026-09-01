@@ -1,4 +1,4 @@
-import random,csv
+import random,csv,os
 scoreList=[10000,9000,7500,5000,2500,1000,750,500,250,100,50,10,0]
 def game(key):
     global cheat
@@ -57,26 +57,35 @@ def generateKey(length,easyMode):
 
 
 def appendScore(length,score,easyMode):
-    scoreFile=open("scoreFile.csv","r+")
+    scoreFile=open("scoreFile.csv","r")
+    tempfile=open("temp.csv","w")
+    wr=csv.writer(tempfile)
     readObj=csv.reader(scoreFile)
+    found=0
     for i in readObj:
-        if length==i[0] and i[1]==easyMode:
-            i.append[score]
-        if max(i)< score:
-            print("new high score {} in {} length\
-                easyMode:{}".format(score,length,easyMode))
-    else:
-        readObj.append[length,easyMode,score]
-    
+        tl=list(i)
+        if length==int(i[0]) and int(i[1])==easyMode:
+            i.append(score)
+            scoreLst=[int(k) for k in i]
+            hi=max(scoreLst)
+            found=1
+            if hi==score:
+                print("new high score {} in {} length\
+                    easyMode:{}".format(score,length,easyMode))
+        wr.writerow(i)
+    if not found:
+        wr.writerow([length,easyMode,score])
+    os.replace("temp.csv","scoreFile.csv")
+    scoreFile.close()
 
     
 def main():
     length=int(input("enter length of key :"))
     easyMode=input("easy mode y/n: ")
     if easyMode in "yY":
-        easyMode=True
+        easyMode=1
     else:
-        easyMode=False
+        easyMode=0
     key = generateKey(length,easyMode)
     scoreKey=game(key)
     score=scoreList[scoreKey-1]
