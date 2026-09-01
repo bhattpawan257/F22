@@ -1,38 +1,65 @@
-import pickle
-listFile=open("toDoList.dat","rb+")
+import pickle,os
 
 def addToList():
-    rdObj=pickle.load(listFile)
-    rdObj.append(task)
-    pickle.dump(rdObj,listFile)
+    task=input("Write your task: \n")
+    tskNo=len(lst)+1
+    lst.append([tskNo,task])
 
 def popTask():
-    rdObj=pickle.load(listFile)
-    rdObj.pop()
-    pickle.dump(rdObj,listFile)
+    lst.pop()
 
 def displayList():
-    rdObj=pickle.load(listFile)
-    for i in rdObj:
-        print(i)
+    print("\n\t\t\t\tTo-do List")
+    for i in lst:
+        print("\t",i[0],". ",i[1],sep="")
+    print("\n")
 
+def deleteTask():
+    tskNo=int(input("Enter task no :"))
+    found=0
+    templ=[]
+    for i in lst:
+        if i[0]==tskNo:
+            found=1
+        elif not found:
+            templ.append(i)
+        elif found:
+            ni=i[0]-1
+            templ.append([ni,i[1]])
+    lst=list(templ)
 
 def main():
-    while True
-        print("\t\t\tMain Menu")
-        print("1. Add a new task")
-        print("2. Display the task list")
-        print("3. Pop task")
-        print("4. Quit")
-        ch=input("Enter Your Choice")
+    global lst
+    file=open("todolist.dat","rb")
+    temp=open("temp.dat","wb")
+    lst=pickle.load(file)
+    while True:
+        print("\t\t\t\tMain Menu")
+        print("\t1. Add a new task")
+        print("\t2. Display the task list")
+        print("\t3. Pop task")
+        print("\t4. delete a task")
+        print("\t5. Quit")
+        ch=input("Enter Your Choice: ")
         match ch:
             case "1":
                 addToList()
             case "2":
                 displayList()
+                input()
             case "3":
                 popTask()
             case "4":
+                deleteTask()
+            case "5":
                 break
             case _:
                 print("Invalid choice")
+    pickle.dump(lst,temp)
+    file.close()
+    temp.close()
+    os.replace("temp.dat","todolist.dat")
+    
+        
+
+main()
