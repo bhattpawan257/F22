@@ -1,18 +1,29 @@
 import pickle,os
 
+
 def addToList():
     task=input("Write your task: \n")
     tskNo=len(lst)+1
     lst.append([tskNo,task])
 
+
+def addTasks():
+    ch="Y"
+    while ch not in "nN":
+        addToList()
+        ch=input("continue y/n: ")
+
+
 def popTask():
     lst.pop()
+
 
 def displayList():
     print("\n\t\t\t\tTo-do List")
     for i in lst:
         print("\t",i[0],". ",i[1],sep="")
     print("\n")
+
 
 def deleteTask():
     tskNo=int(input("Enter task no :"))
@@ -28,6 +39,7 @@ def deleteTask():
             templ.append([ni,i[1]])
     lst=list(templ)
 
+
 def main():
     global lst
     file=open("todolist.dat","rb")
@@ -36,22 +48,25 @@ def main():
     while True:
         print("\t\t\t\tMain Menu")
         print("\t1. Add a new task")
-        print("\t2. Display the task list")
-        print("\t3. Pop task")
-        print("\t4. delete a task")
-        print("\t5. Quit")
+        print("\t2. Add tasks")
+        print("\t3. Display the task list")
+        print("\t4. Pop task")
+        print("\t5. delete a task")
+        print("\t6. Quit")
         ch=input("Enter Your Choice: ")
         match ch:
             case "1":
                 addToList()
             case "2":
+                addTasks()
+            case "3":
                 displayList()
                 input()
-            case "3":
-                popTask()
             case "4":
-                deleteTask()
+                popTask()
             case "5":
+                deleteTask()
+            case "6":
                 break
             case _:
                 print("Invalid choice")
