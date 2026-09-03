@@ -7,24 +7,35 @@ def addToList():
     lst.append([tskNo,task])
 
 
-def addTasks():
-    ch="Y"
-    while ch not in "nN":
-        addToList()
-        ch=input("continue y/n: ")
+def addtasks():
+    task=input("write your task (press q to quit):\n")
+    while task not in "qQ":
+        task=input()
+        if task not in "Qq":
+            tskNo=len(lst)+1
+            lst.append([tskNo,task])
 
 
 def popTask():
-    lst.pop()
+    try:
+        x=lst.pop()
+        print(f"{x[0]}.{x[1]} popped from list")
+        displayList()
+    except:
+        input("list empty")
 
 
 def displayList():
+    if len(lst)==0:
+        input("list empty")
+        return
     print("\n\t\t\t\tTo-do List")
-    for i in lst:
+    for i in lst[:-1]:
         print("\t",i[0],". ",i[1],sep="")
-    print("\n")
+    print("\t",lst[-1][0],". ",lst[-1][1],sep="",end="")
+    input()
 
-
+    
 def deleteTask():
     tskNo=int(input("Enter task no :"))
     found=0
@@ -58,10 +69,9 @@ def main():
             case "1":
                 addToList()
             case "2":
-                addTasks()
+                addtasks()
             case "3":
                 displayList()
-                input()
             case "4":
                 popTask()
             case "5":
